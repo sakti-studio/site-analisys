@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Analysis and Architectural Study | Lahore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .strategy-card {
+            background-color: white;
+            border-top: 4px solid #00A6FB;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            height: 100%;
+        }
+        .strategy-card ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+        .strategy-card li {
+            margin-bottom: 0.5rem;
+        }
+        .kpi-card {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px -1px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#040F16] mb-2">SITE ANALYSIS AND ARCHITECTURAL STUDY</h1>
+            <p class="text-lg text-gray-600">A Visual Analysis of Climate & Air Quality Data for Responsive Architectural Design</p>
+        </header>
+
+        <section id="kpi" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#040F16]">Site Condition Summary</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+                <div class="kpi-card border-t-4 border-[#DC0073]">
+                    <p class="text-4xl md:text-5xl font-bold text-[#DC0073]">42°C</p>
+                    <p class="text-lg font-semibold mt-2">Maximum Temperature</p>
+                </div>
+                <div class="kpi-card border-t-4 border-[#F5B700]">
+                    <p class="text-4xl md:text-5xl font-bold text-[#F5B700]">195</p>
+                    <p class="text-lg font-semibold mt-2">Peak AQI</p>
+                </div>
+                <div class="kpi-card border-t-4 border-[#00A6FB]">
+                    <p class="text-4xl md:text-5xl font-bold text-[#00A6FB]">71%</p>
+                    <p class="text-lg font-semibold mt-2">Humidity</p>
+                </div>
+                <div class="kpi-card border-t-4 border-[#05668D]">
+                    <p class="text-4xl md:text-5xl font-bold text-[#05668D]">50%</p>
+                    <p class="text-lg font-semibold mt-2">Cloud Cover</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="suhu" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-1 text-[#040F16]">Temperature Trend Analysis: Day and Night Heat</h2>
+                <p class="text-gray-600 mb-6">The chart shows the maximum (red) and minimum (blue) temperatures over a two-week period. Daytime temperatures are consistently above 35°C, indicating a constant heat load on the building. Even night temperatures remain high, limiting natural cooling.</p>
+                <div class="chart-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="prakiraan_harian" class="mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold mb-1 text-[#040F16]">Daily Temperature Forecast</h2>
+                    <p class="text-gray-600 mb-6">Detailed 3-hour temperature data shows the heat peak occurs in the afternoon (around 2 PM). The temperature difference between day and night (diurnal swing) needs to be considered in selecting materials with thermal mass.</p>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="hourlyTempChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-3xl font-bold mb-1 text-[#040F16]">Precipitation Forecast</h2>
+                    <p class="text-gray-600 mb-6">Although not significant daily, there is potential for heavy rain on certain days. Roof and landscape drainage systems must be designed to handle sudden downpours.</p>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="precipitationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kualitas_udara" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-1 text-[#040F16]">Air Quality Crisis: The Unseen Threat</h2>
+                <p class="text-gray-600 mb-6">The Air Quality Index (AQI) regularly reaches 'Unhealthy' levels, especially in the morning and evening. This pollution demands a sealed building design with a capable air filtration system to protect its occupants.</p>
+                <div class="chart-container">
+                    <canvas id="aqiChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="cahaya" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold mb-1 text-[#040F16]">Natural Light & Day Length Analysis</h2>
+                <p class="text-gray-600 mb-6">The long day duration (over 14 hours) is an asset for natural lighting. However, it's crucial to understand the light quality during transition phases (twilight). The chart below shows the decomposition of the day's duration, providing insights for artificial lighting design and window placement.</p>
+                <div class="w-full mt-4">
+                    <div class="text-center font-semibold mb-2">Day Duration Composition (24 Hours)</div>
+                    <div class="flex w-full h-12 rounded-lg overflow-hidden shadow-inner bg-gray-200">
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 14.4%; background-color: #042a4f;" title="Night (3h 27m)">Night</div>
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 2.5%; background-color: #2c4f70;" title="Astronomical Twilight (36m)"></div>
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 2.3%; background-color: #557591;" title="Nautical Twilight (34m)"></div>
+                        <div class="flex items-center justify-center h-full text-black text-xs text-center" style="width: 1.9%; background-color: #a3b5c7;" title="Civil Twilight (28m)"></div>
+                        <div class="flex items-center justify-center h-full text-black text-lg font-bold text-center" style="width: 58.9%; background-color: #fde68a;" title="Daylight (14h 8m)">DAY</div>
+                        <div class="flex items-center justify-center h-full text-black text-xs text-center" style="width: 1.9%; background-color: #a3b5c7;" title="Civil Twilight (28m)"></div>
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 2.3%; background-color: #557591;" title="Nautical Twilight (34m)"></div>
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 2.5%; background-color: #2c4f70;" title="Astronomical Twilight (36m)"></div>
+                        <div class="flex items-center justify-center h-full text-white text-xs text-center" style="width: 13.1%; background-color: #042a4f;" title="Night (3h 9m)">Night</div>
+                    </div>
+                     <div class="flex justify-between text-xs mt-1 text-gray-600">
+                        <span>00:00</span>
+                        <span>03:27</span>
+                        <span>05:05 (Sunrise)</span>
+                        <span>19:13 (Sunset)</span>
+                        <span>21:51</span>
+                        <span>24:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="rekomendasi" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#040F16]">Responsive Design Strategy</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">1. Passive Architecture Strategy</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Building Orientation:</strong> Focus on northeast orientation for main spaces, minimizing openings towards the southwest.</li>
+                        <li><strong>Overhangs & Shading:</strong> Add wide overhangs, pergolas, and a secondary skin to block direct sunlight and rain.</li>
+                        <li><strong>Cross-Ventilation:</strong> Enhance natural cross-ventilation throughout all indoor and semi-indoor areas.</li>
+                        <li><strong>Voids & Atriums:</strong> Use internal voids/atriums to facilitate vertical air movement (stack effect).</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">2. Landscape & Drainage Strategy</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Permeable Surfaces:</strong> Implement porous paving in parking and pedestrian areas to prevent water runoff.</li>
+                        <li><strong>Bioswales & Rain Gardens:</strong> Create natural channels and catchments for rainwater runoff management.</li>
+                        <li><strong>Green Buffer:</strong> Use dust and pollutant filtering plants (e.g., bamboo, ficus) on the site perimeter.</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">3. Material & Construction</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Resistant Materials:</strong> Use heat and humidity resistant materials like exposed brick, local stone, and PU sandwich panel roofs.</li>
+                        <li><strong>Ventilated Facades:</strong> For west and south-facing areas, use ventilated facades or vertical greenery to reduce heat gain.</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">4. Comfort & Health</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Air Quality Measures:</strong> Add indoor vegetation & air purifiers. Minimize construction during poor AQI periods.</li>
+                        <li><strong>Misting Zones:</strong> Use misting or air curtains to improve microclimate comfort in semi-outdoor areas (e.g., event lawn, café).</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">5. Energy Management</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Solar Panels:</strong> Optimize flat roofs for solar panels to support energy sustainability.</li>
+                        <li><strong>Lighting Strategy:</strong> Use daylight sensors & LED lamps in showrooms and transition areas to save energy.</li>
+                    </ul>
+                </div>
+                <div class="strategy-card">
+                    <h3 class="text-xl font-bold mb-3 text-[#040F16]">6. Zone Connectivity</h3>
+                    <ul class="text-gray-700 list-disc">
+                        <li><strong>Shaded Circulation:</strong> Create semi-open pedestrian paths integrated with the landscape.</li>
+                        <li><strong>Transitional Spaces:</strong> Add buffer zones (terraces, balconies, verandas) to aid thermal and functional transitions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 text-gray-500">
+            <p>This infographic was created based on site analysis data for a location in Lahore, Pakistan.</p>
+            <p>Design by AI. Does not use SVG or Mermaid JS.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const tempCtx = document.getElementById('temperatureChart').getContext('2d');
+            new Chart(tempCtx, {
+                type: 'line',
+                data: {
+                    labels: ['04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17'],
+                    datasets: [{
+                        label: 'Maximum Temperature (°C)',
+                        data: [38, 37, 37, 29, 28, 29, 33, 35, 37, 39, 41, 42, 41, 42],
+                        borderColor: '#DC0073',
+                        backgroundColor: 'rgba(220, 0, 115, 0.1)',
+                        fill: false,
+                        tension: 0.3,
+                        borderWidth: 3
+                    }, {
+                        label: 'Minimum Temperature (°C)',
+                        data: [30, 29, 29, 27, 27, 26, 26, 26, 27, 29, 31, 33, 32, 30],
+                        borderColor: '#00A6FB',
+                        backgroundColor: 'rgba(0, 166, 251, 0.1)',
+                        fill: false,
+                        tension: 0.3,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: false, title: { display: true, text: 'Temperature (°C)' } }, x: { title: { display: true, text: 'Date (July)' } } },
+                    ...tooltipTitleCallback
+                }
+            });
+
+            const hourlyTempCtx = document.getElementById('hourlyTempChart').getContext('2d');
+            new Chart(hourlyTempCtx, {
+                type: 'line',
+                data: {
+                    labels: ['02 AM', '05 AM', '08 AM', '11 AM', '02 PM', '05 PM', '08 PM', '11 PM'],
+                    datasets: [{
+                        label: 'Temperature Forecast (°C)',
+                        data: [31, 29, 31, 35, 37, 36, 34, 32],
+                        borderColor: '#F5B700',
+                        backgroundColor: 'rgba(245, 183, 0, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: false, title: { display: true, text: 'Temperature (°C)' } }, x: { title: { display: true, text: 'Time (July 05 Forecast)' } } },
+                    plugins: { legend: { display: false }, ...tooltipTitleCallback.plugins }
+                }
+            });
+
+            const precipitationCtx = document.getElementById('precipitationChart').getContext('2d');
+            new Chart(precipitationCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['07', '08', '09', '10', '11', '12', '13', '14', '15', '16'],
+                    datasets: [{
+                        label: 'Precipitation (inch)',
+                        data: [0.02, 0.07, 0.06, 0.32, 0.75, 0.61, 0.01, 0.55, 0.64, 0.48],
+                        backgroundColor: '#00A6FB',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'Rainfall (inch)' } }, x: { title: { display: true, text: 'Date (July)' } } },
+                     plugins: { legend: { display: false }, ...tooltipTitleCallback.plugins }
+                }
+            });
+
+            const aqiCtx = document.getElementById('aqiChart').getContext('2d');
+            new Chart(aqiCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Friday 05AM', 'Friday 11AM', 'Friday 05PM', 'Friday 11PM', 'Saturday 05AM', 'Saturday 11AM', 'Saturday 05PM', 'Sunday 05AM', 'Sunday 11AM', 'Monday 05AM'],
+                    datasets: [{
+                        label: 'Air Quality Index (AQI)',
+                        data: [155, 180, 195, 190, 170, 135, 140, 150, 65, 120],
+                        backgroundColor: (context) => {
+                            const value = context.raw;
+                            if (value >= 150) return '#DC0073'; 
+                            if (value >= 100) return '#F5B700'; 
+                            return '#00A6FB'; 
+                        },
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'AQI' } }, x: { title: { display: true, text: 'Time' } } },
+                    ...tooltipTitleCallback
+                }
+            });
+        });
+    </script>
+</body>
+</html>
